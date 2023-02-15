@@ -16,7 +16,7 @@ class OnGenareteRoute {
       case '/on_boarding_first':
         return navigatePage(const OnBoardingFirst(), settings);
       case '/on_boarding_second':
-        return navigatePage(const OnBoardingSecond(), settings);
+        return navigatePage(OnBoardingSecond(), settings);
     }
   }
 
