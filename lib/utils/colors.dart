@@ -8,4 +8,5 @@ class GTranslationColors {
   static const Color C_E5E5E5 = Color(0xffE5E5E5);
   static const Color C_378DF1 = Color(0xff378DF1);
   static const Color C_164D8D = Color(0xff164D8D);
+  static const Color C_C3D3E5 = Color(0xffC3D3E5);
 }

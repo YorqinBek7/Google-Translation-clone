@@ -1,8 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:gtranslation_clone/ui/splash_screen/widgets/background_paint.dart';
+import 'package:gtranslation_clone/ui/splash_screen/widgets/chat_painter.dart';
 import 'package:gtranslation_clone/utils/colors.dart';
 
-class OnBoardingSecond extends StatelessWidget {
+class OnBoardingSecond extends StatefulWidget {
   const OnBoardingSecond({super.key});
+
+  @override
+  State<OnBoardingSecond> createState() => _OnBoardingSecondState();
+}
+
+class _OnBoardingSecondState extends State<OnBoardingSecond> {
+  @override
+  void initState() {
+    super.initState();
+    _init();
+  }
+
+  _init() async {
+    await Future.delayed(const Duration(seconds: 2),
+        () => Navigator.pushReplacementNamed(context, '/on_boarding_third'));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -10,18 +28,16 @@ class OnBoardingSecond extends StatelessWidget {
       appBar: AppBar(),
       body: Column(
         children: [
-          Spacer(
-            flex: 2,
-          ),
+          const Spacer(flex: 2),
           Text(
             'Different languages',
-            style: Theme.of(context).textTheme.headline3,
-          ),
-          SizedBox(
-            height: 5.0,
+            style: Theme.of(context).textTheme.headline3!.copyWith(
+                  color: GTranslationColors.white,
+                  fontWeight: FontWeight.w300,
+                ),
           ),
           Text(
-            'Common communication',
+            'common communication',
             style: Theme.of(context).textTheme.headline2,
             textAlign: TextAlign.start,
           ),
@@ -42,7 +58,7 @@ class OnBoardingSecond extends StatelessWidget {
                   height: MediaQuery.of(context).size.height * .2,
                   width: MediaQuery.of(context).size.width * .5,
                   child: CustomPaint(
-                    painter: FirstChatPainter(),
+                    painter: ChatPainter(),
                   ),
                 ),
               ),
@@ -54,67 +70,30 @@ class OnBoardingSecond extends StatelessWidget {
                   style: Theme.of(context).textTheme.headline3,
                 ),
               ),
+              Positioned(
+                left: 200.0,
+                top: 150.0,
+                child: SizedBox(
+                  height: MediaQuery.of(context).size.height * .2,
+                  width: MediaQuery.of(context).size.width * .5,
+                  child: CustomPaint(
+                    painter: ChatPainter(),
+                  ),
+                ),
+              ),
+              Positioned(
+                left: MediaQuery.of(context).size.width * .69,
+                top: MediaQuery.of(context).size.height * .27,
+                child: Text(
+                  'Hello',
+                  style: Theme.of(context).textTheme.headline3,
+                ),
+              ),
             ],
-          )
+          ),
+          const Spacer(),
         ],
       ),
     );
   }
-}
-
-class BackgroundPainter extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..strokeWidth = 2.0
-      ..style = PaintingStyle.fill
-      ..color = GTranslationColors.C_378DF1;
-
-    final path = Path();
-    path.moveTo(size.width * .6, size.height * .1);
-
-    path.quadraticBezierTo(
-        size.width * .2, size.height * .2, size.width * .2, size.height * .35);
-    path.quadraticBezierTo(
-        size.width * .2, size.height * .4, size.width * .25, size.height * .47);
-    path.quadraticBezierTo(size.width * .3, size.height * .55, size.width * .25,
-        size.height * .65);
-    path.quadraticBezierTo(
-        size.width * .15, size.height * .9, size.width * .5, size.height * .7);
-    path.quadraticBezierTo(
-        size.width * .56, size.height * .66, size.width * .7, size.height * .8);
-    path.quadraticBezierTo(
-        size.width * .85, size.height * .9, size.width * .87, size.height * .5);
-    path.quadraticBezierTo(
-        size.width * .8, size.height * .1, size.width * .6, size.height * .1);
-    path.close();
-    canvas.drawPath(path, paint);
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
-}
-
-class FirstChatPainter extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..strokeWidth = 2.0
-      ..style = PaintingStyle.fill
-      ..color = GTranslationColors.C_164D8D;
-    canvas.drawRRect(
-      RRect.fromRectAndRadius(
-        Rect.fromCenter(
-          center: Offset(size.width * .5, size.height * .5),
-          width: size.width * .55,
-          height: size.height * .4,
-        ),
-        const Radius.circular(10.0),
-      ),
-      paint,
-    );
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => true;
 }

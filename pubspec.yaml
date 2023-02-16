@@ -12,6 +12,11 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.2
+  speech_to_text: ^6.1.1
+  flutter_toast_message: ^0.0.1
+  diox: ^5.0.0
+  bloc: ^8.1.1
+  flutter_bloc: ^8.1.2
 
 dev_dependencies:
   flutter_test:
@@ -20,9 +25,7 @@ dev_dependencies:
   flutter_lints: ^2.0.0
 
 flutter:
-
   uses-material-design: true
-
   assets:
     - assets/
 

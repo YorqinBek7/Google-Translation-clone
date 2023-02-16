@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gtranslation_clone/cubits/first_button/first_but_changer_cubit.dart';
+import 'package:gtranslation_clone/cubits/second_button/second_button_cubit.dart';
 import 'package:gtranslation_clone/ui/route.dart';
 import 'package:gtranslation_clone/ui/splash_screen/splash_screen.dart';
 import 'package:gtranslation_clone/utils/colors.dart';
@@ -13,12 +16,22 @@ class GTranslationApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Google Translate Clone',
-      theme: _lightTheme(),
-      onGenerateRoute: OnGenareteRoute.INSTANCE.generateRoute,
-      home: const SplashScreen(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => FirstButChangerCubit(),
+        ),
+        BlocProvider(
+          create: (context) => SecondButtonCubit(),
+        ),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Google Translate Clone',
+        theme: _lightTheme(),
+        onGenerateRoute: OnGenareteRoute.INSTANCE.generateRoute,
+        home: const SplashScreen(),
+      ),
     );
   }
 
