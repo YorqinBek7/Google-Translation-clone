@@ -10,9 +10,11 @@ class LanguagesToSelect extends StatelessWidget {
     Key? key,
     required this.language,
     required this.isLast,
+    required this.code,
   }) : super(key: key);
   final String language;
   final bool isLast;
+  final String code;
 
   @override
   Widget build(BuildContext context) {
@@ -25,10 +27,13 @@ class LanguagesToSelect extends StatelessWidget {
               if (Helper.whichButtonTapped == 1) {
                 context
                     .read<FirstButChangerCubit>()
-                    .tryToChangeLan(lan: language);
+                    .tryToChangeLan(lan: language, code: code);
               } else {
-                context.read<SecondButtonCubit>().tryToChangeLan(lan: language);
+                context
+                    .read<SecondButtonCubit>()
+                    .tryToChangeLan(lan: language, code: code);
               }
+
               Navigator.pop(context);
             },
             title: Text(language),

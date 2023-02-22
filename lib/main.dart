@@ -3,11 +3,16 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gtranslation_clone/cubits/first_button/first_but_changer_cubit.dart';
 import 'package:gtranslation_clone/cubits/second_button/second_button_cubit.dart';
+import 'package:gtranslation_clone/service/hive_service.dart';
 import 'package:gtranslation_clone/ui/route.dart';
 import 'package:gtranslation_clone/ui/splash_screen/splash_screen.dart';
 import 'package:gtranslation_clone/utils/colors.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+  await HiveService.instance.openHiveBox();
   runApp(const GTranslationApp());
 }
 

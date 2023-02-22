@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:gtranslation_clone/cubits/first_button/first_but_changer_cubit.dart';
 import 'package:gtranslation_clone/cubits/second_button/second_button_cubit.dart';
 import 'package:gtranslation_clone/service/api_service.dart';
+import 'package:gtranslation_clone/service/hive_service.dart';
 import 'package:gtranslation_clone/ui/home_screen/widgets/action_circle_but.dart';
 import 'package:gtranslation_clone/ui/home_screen/widgets/change_lan_but.dart';
 import 'package:gtranslation_clone/utils/colors.dart';
@@ -25,8 +27,6 @@ class _HomeScreenState extends State<HomeScreen> {
   final TextEditingController _textController = TextEditingController();
   final TextEditingController _translatedController = TextEditingController();
   final FocusNode _focusNode = FocusNode();
-  String _firstLanguage = 'English';
-  String _secondLanguage = 'Uzbek';
 
   @override
   void initState() {
@@ -58,6 +58,8 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     var textStyle = Theme.of(context).textTheme;
+    var readFirstBut = context.read<FirstButChangerCubit>();
+    var readSecondBut = context.read<SecondButtonCubit>();
     return GestureDetector(
       onTap: () => _focusNode.unfocus(),
       child: Scaffold(
@@ -101,8 +103,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   if (value.isNotEmpty) {
                     _translatedController.text =
                         await ApiService().tryToTranslate(
-                      firstLanguage: 'en',
-                      secondLanguage: 'uz',
+                      firstLanguage: readFirstBut.language['code']!,
+                      secondLanguage: readSecondBut.language['code']!,
                       word: value,
                     );
                     setState(() {});
@@ -135,6 +137,42 @@ class _HomeScreenState extends State<HomeScreen> {
                 maxLines: null,
               ),
             ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                shadowColor: Colors.transparent,
+                backgroundColor: GTranslationColors.C_C3D3E5,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20.0),
+                ),
+              ),
+              onPressed: () async {
+                if (_translatedController.text.isEmpty) {
+                  await Fluttertoast.showToast(
+                    msg: 'Text is empty',
+                    backgroundColor: GTranslationColors.C_98A8BA,
+                  );
+                  return;
+                }
+                await HiveService.instance
+                    .putData(
+                      firstLan: _textController.text,
+                      secondLan: _translatedController.text,
+                    )
+                    .then(
+                      (value) async => await Fluttertoast.showToast(
+                        msg: 'Text is saved',
+                        backgroundColor: GTranslationColors.C_98A8BA,
+                      ),
+                    );
+              },
+              child: Text(
+                'Save text',
+                style: Theme.of(context).textTheme.headline3!.copyWith(
+                      color: GTranslationColors.black,
+                      fontSize: 14.0,
+                    ),
+              ),
+            ),
             const Spacer(
               flex: 5,
             ),
@@ -161,16 +199,21 @@ class _HomeScreenState extends State<HomeScreen> {
                               );
                             },
                             textButon: (state is FirstButChangerInitial)
-                                ? state.language
+                                ? readFirstBut.language['lan']!
                                 : '',
                           );
                         },
                       ),
                       IconButton(
                         onPressed: () => setState(() {
-                          String _switcher = _secondLanguage;
-                          _secondLanguage = _firstLanguage;
-                          _firstLanguage = _switcher;
+                          var secondLanCode = readSecondBut.language['code']!;
+                          readSecondBut.language['code'] =
+                              readFirstBut.language['code']!;
+                          readFirstBut.language['code'] = secondLanCode;
+                          var secondLan = readSecondBut.language['lan']!;
+                          readSecondBut.language['lan'] =
+                              readFirstBut.language['lan']!;
+                          readFirstBut.language['lan'] = secondLan;
                         }),
                         icon: const Icon(
                           Icons.compare_arrows_outlined,
@@ -189,7 +232,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               );
                             },
                             textButon: (state is SecondButtonInitial)
-                                ? state.language
+                                ? readSecondBut.language['lan']!
                                 : '',
                           );
                         },
@@ -203,7 +246,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       ActionCircleButton(
-                        onTap: () {},
+                        onTap: () async {
+                          Navigator.pushNamed(context, '/saved_screen');
+                        },
                         icon: Icons.bookmark,
                         padding: 15.0,
                       ),
@@ -217,7 +262,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         padding: 25.0,
                       ),
                       ActionCircleButton(
-                        onTap: () {},
+                        onTap: () async => await Fluttertoast.showToast(
+                          msg: 'Sorry not working',
+                          backgroundColor: GTranslationColors.C_98A8BA,
+                        ),
                         icon: Icons.history_outlined,
                         padding: 15.0,
                       ),

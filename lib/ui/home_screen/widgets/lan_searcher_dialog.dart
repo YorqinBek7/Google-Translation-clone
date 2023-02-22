@@ -34,6 +34,7 @@ class LanSearcher extends SearchDelegate {
       itemBuilder: (context, index) => LanguagesToSelect(
         language: matchQuery[index],
         isLast: matchQuery.length - 1 == index,
+        code: '',
       ),
     );
   }
@@ -45,6 +46,7 @@ class LanSearcher extends SearchDelegate {
       itemBuilder: (context, index) => LanguagesToSelect(
         language: languages[index]['lan']!,
         isLast: languages.length - 1 == index,
+        code: languages[index]['code']!,
       ),
     );
   }

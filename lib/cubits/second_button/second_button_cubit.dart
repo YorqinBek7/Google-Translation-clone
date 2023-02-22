@@ -2,10 +2,18 @@ import 'package:bloc/bloc.dart';
 part 'second_button_state.dart';
 
 class SecondButtonCubit extends Cubit<SecondButtonState> {
-  SecondButtonCubit() : super(SecondButtonInitial(language: 'Uzbek'));
+  Map<String, String> language = {
+    'lan': 'Uzbek',
+    'code': 'uz',
+  };
+  SecondButtonCubit() : super(SecondButtonInitial());
 
-  tryToChangeLan({required String lan}) {
+  tryToChangeLan({required String lan, required String code}) {
     emit(SecondButtonChanged());
-    emit(SecondButtonInitial(language: lan));
+    language = {
+      'lan': lan,
+      'code': code,
+    };
+    emit(SecondButtonInitial());
   }
 }

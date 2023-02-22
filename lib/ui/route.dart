@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gtranslation_clone/ui/home_screen/home_screen.dart';
+import 'package:gtranslation_clone/ui/home_screen/saved_screen.dart';
 import 'package:gtranslation_clone/ui/splash_screen/on_boarding_1.dart';
 import 'package:gtranslation_clone/ui/splash_screen/on_boarding_2.dart';
 import 'package:gtranslation_clone/ui/splash_screen/on_boarding_3.dart';
@@ -21,8 +22,11 @@ class OnGenareteRoute {
         return navigatePage(const OnBoardingSecond(), settings);
       case '/on_boarding_third':
         return navigatePage(const OnBoardingThird(), settings);
+
       case '/home_screen':
         return navigatePage(const HomeScreen(), settings);
+      case '/saved_screen':
+        return navigatePage(const SavedScreen(), settings);
     }
   }
 
