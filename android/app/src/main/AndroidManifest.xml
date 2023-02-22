@@ -8,6 +8,7 @@
     </intent>
 </queries>
    <application
+        android:allowBackup="false"
         android:label="Google Translate Clone"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
