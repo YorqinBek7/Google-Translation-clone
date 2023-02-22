@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:gtranslation_clone/cubits/first_button/first_but_changer_cubit.dart';
 import 'package:gtranslation_clone/cubits/second_button/second_button_cubit.dart';
@@ -32,12 +33,19 @@ class GTranslationApp extends StatelessWidget {
           create: (context) => SecondButtonCubit(),
         ),
       ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Google Translate Clone',
-        theme: _lightTheme(),
-        onGenerateRoute: OnGenareteRoute.INSTANCE.generateRoute,
-        home: const SplashScreen(),
+      child: ScreenUtilInit(
+        designSize: const Size(375.0, 812.0),
+        minTextAdapt: true,
+        splitScreenMode: true,
+        builder: (BuildContext context, Widget? child) {
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'Google Translate Clone',
+            theme: _lightTheme(),
+            onGenerateRoute: OnGenareteRoute.INSTANCE.generateRoute,
+            home: const SplashScreen(),
+          );
+        },
       ),
     );
   }

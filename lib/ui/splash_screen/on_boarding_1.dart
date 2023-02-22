@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gtranslation_clone/utils/colors.dart';
 import 'package:gtranslation_clone/utils/icons.dart';
 
@@ -62,8 +63,8 @@ class _OnBoardingFirstState extends State<OnBoardingFirst>
               ],
             ),
           ),
-          const SizedBox(
-            height: 20.0,
+          SizedBox(
+            height: 20.0.h,
           ),
           const Spacer(),
           Stack(

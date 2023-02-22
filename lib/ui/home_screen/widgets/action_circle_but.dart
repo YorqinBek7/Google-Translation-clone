@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gtranslation_clone/utils/colors.dart';
 
 class ActionCircleButton extends StatelessWidget {
@@ -18,8 +19,8 @@ class ActionCircleButton extends StatelessWidget {
       onPressed: onTap,
       elevation: 0.0,
       fillColor: GTranslationColors.C_C3D3E5,
-      shape: CircleBorder(),
-      padding: EdgeInsets.all(padding),
+      shape: const CircleBorder(),
+      padding: EdgeInsets.all(padding.h),
       child: Icon(icon),
     );
   }

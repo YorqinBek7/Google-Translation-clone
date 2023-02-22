@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:gtranslation_clone/utils/colors.dart';
 import 'package:gtranslation_clone/utils/icons.dart';
@@ -41,14 +42,14 @@ class _OnBoardingThirdState extends State<OnBoardingThird> {
             style: textStyle.copyWith(color: GTranslationColors.white),
           ),
           SizedBox(
-            height: 40.0,
+            height: 40.0.h,
           ),
           Align(
             alignment: Alignment.center,
             child: Image.asset(
               GTranslationIcons.thirdOnBoarding,
-              width: 337.27,
-              height: 135.0,
+              width: 337.27.w,
+              height: 135.0.h,
               fit: BoxFit.cover,
             ),
           ),

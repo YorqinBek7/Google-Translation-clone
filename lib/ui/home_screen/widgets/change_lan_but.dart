@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gtranslation_clone/utils/colors.dart';
 
 class ChangeLanButton extends StatelessWidget {
@@ -24,8 +25,8 @@ class ChangeLanButton extends StatelessWidget {
           fontSize: 18.0,
         ),
         padding: EdgeInsets.symmetric(
-          horizontal: 20.0,
-          vertical: 10.0,
+          horizontal: 20.0.w,
+          vertical: 10.0.h,
         ),
       ),
       onPressed: onTap,

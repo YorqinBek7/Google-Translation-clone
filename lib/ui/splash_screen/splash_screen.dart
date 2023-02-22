@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:gtranslation_clone/utils/icons.dart';
 
@@ -35,11 +36,11 @@ class _SplashScreenState extends State<SplashScreen> {
           ),
           Image.asset(
             GTranslationIcons.logo,
-            height: 105.0,
-            width: 105.0,
+            height: 105.0.h,
+            width: 105.0.w,
           ),
           SizedBox(
-            height: 10.0,
+            height: 10.0.h,
           ),
           Text(
             'Google Translate',

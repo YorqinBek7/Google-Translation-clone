@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:gtranslation_clone/cubits/first_button/first_but_changer_cubit.dart';
 import 'package:gtranslation_clone/cubits/second_button/second_button_cubit.dart';
@@ -65,7 +66,7 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
-          toolbarHeight: 60.0,
+          toolbarHeight: 60.0.h,
           centerTitle: true,
           title: RichText(
             text: TextSpan(
@@ -88,7 +89,7 @@ class _HomeScreenState extends State<HomeScreen> {
         body: Column(
           children: [
             SizedBox(
-              height: 10.0,
+              height: 10.0.h,
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
@@ -142,7 +143,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 shadowColor: Colors.transparent,
                 backgroundColor: GTranslationColors.C_C3D3E5,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20.0),
+                  borderRadius: BorderRadius.circular(20.0.r),
                 ),
               ),
               onPressed: () async {
@@ -177,7 +178,7 @@ class _HomeScreenState extends State<HomeScreen> {
               flex: 5,
             ),
             Container(
-              padding: EdgeInsets.all(10.0),
+              padding: EdgeInsets.all(10.0.h),
               decoration: const BoxDecoration(
                 color: GTranslationColors.white,
               ),
@@ -240,7 +241,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                   SizedBox(
-                    height: 10.0,
+                    height: 10.0.h,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -250,7 +251,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           Navigator.pushNamed(context, '/saved_screen');
                         },
                         icon: Icons.bookmark,
-                        padding: 15.0,
+                        padding: 15.0.w,
                       ),
                       ActionCircleButton(
                         onTap: _speechToText.isNotListening
@@ -259,7 +260,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         icon: _speechToText.isNotListening
                             ? Icons.mic_off
                             : Icons.mic,
-                        padding: 25.0,
+                        padding: 25.0.w,
                       ),
                       ActionCircleButton(
                         onTap: () async => await Fluttertoast.showToast(
@@ -267,7 +268,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           backgroundColor: GTranslationColors.C_98A8BA,
                         ),
                         icon: Icons.history_outlined,
-                        padding: 15.0,
+                        padding: 15.0.w,
                       ),
                     ],
                   ),

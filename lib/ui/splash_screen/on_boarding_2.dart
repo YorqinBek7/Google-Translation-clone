@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gtranslation_clone/ui/splash_screen/widgets/background_paint.dart';
 import 'package:gtranslation_clone/ui/splash_screen/widgets/chat_painter.dart';
 import 'package:gtranslation_clone/utils/colors.dart';
@@ -45,15 +46,15 @@ class _OnBoardingSecondState extends State<OnBoardingSecond> {
           Stack(
             children: [
               SizedBox(
-                height: 400,
-                width: 400,
+                height: 400.0.h,
+                width: 400.0.w,
                 child: CustomPaint(
                   painter: BackgroundPainter(),
                 ),
               ),
               Positioned(
-                left: 50.0,
-                top: 40.0,
+                left: 50.0.w,
+                top: 40.0.h,
                 child: SizedBox(
                   height: MediaQuery.of(context).size.height * .2,
                   width: MediaQuery.of(context).size.width * .5,
@@ -71,8 +72,8 @@ class _OnBoardingSecondState extends State<OnBoardingSecond> {
                 ),
               ),
               Positioned(
-                left: 200.0,
-                top: 150.0,
+                left: 200.0.w,
+                top: 150.0.h,
                 child: SizedBox(
                   height: MediaQuery.of(context).size.height * .2,
                   width: MediaQuery.of(context).size.width * .5,
