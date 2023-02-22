@@ -8,7 +8,7 @@
     </intent>
 </queries>
    <application
-        android:label="gtranslation_clone"
+        android:label="Google Translate Clone"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

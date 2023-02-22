@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:gtranslation_clone/utils/colors.dart';
 import 'package:gtranslation_clone/utils/icons.dart';
 
@@ -17,6 +18,7 @@ class _OnBoardingThirdState extends State<OnBoardingThird> {
   }
 
   _init() async {
+    GetStorage().write('isFirstTime', false);
     await Future.delayed(const Duration(seconds: 2),
         () => Navigator.pushReplacementNamed(context, '/home_screen'));
   }

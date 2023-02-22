@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:gtranslation_clone/utils/icons.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -16,10 +17,11 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future<void> _init() async {
-    await Future.delayed(
-      const Duration(seconds: 2),
-      () => Navigator.pushReplacementNamed(context, '/on_boarding_first'),
-    );
+    await Future.delayed(const Duration(seconds: 2), () async {
+      GetStorage().read('isFirstTime') == false
+          ? await Navigator.pushReplacementNamed(context, '/home_screen')
+          : await Navigator.pushReplacementNamed(context, '/on_boarding_first');
+    });
   }
 
   @override
